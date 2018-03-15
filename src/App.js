@@ -8,7 +8,8 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
-import { getEvents } from './gcal'
+import { getEvents } from './gcal';
+import Calendar from './components/Calendar';
 import logo from './images/logo.png';
 import 'typeface-open-sans';
 import './App.css';
@@ -17,9 +18,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      username: '', // <-- Nombre que aparece en pantalla (displayName)
+      city: null, // Ubicación actual
       user: null, // <-- Google user
-      moonEvents: [] // <-- Eventos del calendario
+      events: [] // <-- Eventos del calendario lunar
     }
     console.log('constructor');
     //this.handleChange = this.handleChange.bind(this); // <-- maneja los cambios y los vincula al state
@@ -64,22 +66,27 @@ class App extends Component {
       }
     });
     // Trae los eventos de la API de Google Calendar:
-    getEvents((moonEvents) => {
-      this.setState({ moonEvents })
+    getEvents((events) => {
+      this.setState({ events });
     })
   }
 
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        {/* Vista 1 Usuario logueado : Vista 2 No logueado */}
         {this.state.user ?
           <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
             <AppBar title="LUNAR.IO" />
             <Grid fluid>
               <Row>
                 <Col xs={12} md={12}>
-                  Calendar
-                <FlatButton onClick={this.logout} label="Cierra sesión" />
+                  <Calendar 
+                    events={this.state.events}
+                    startAccessor='startDate'
+                    endAccessor='endDate' 
+                  />
+                  <FlatButton onClick={this.logout} label="Cierra sesión" />
                 </Col>
               </Row>
             </Grid>
@@ -89,7 +96,7 @@ class App extends Component {
             <Row>
               <Col xs={12} md={12}>
                 <div className="logo">
-                  <img className="App-logo" src={logo} alt="" />
+                  <img className="App-logo" src={logo} alt="Lunar.io logo" />
                 </div>
               </Col>
             </Row>
@@ -107,9 +114,9 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+/*App.propTypes = {
   user: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired
-}
+} */
 
 export default App;

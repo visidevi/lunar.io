@@ -7,15 +7,15 @@ export function getEvents(callback) {
   fetch(url).then(data => {
     return data.json();
   }).then(data => {
-    const moonEvents = [];
+    const events = [];
     console.log(data);
     data.items.map((data) => {
-      moonEvents.push({
+      events.push({
         start: data.start.date || data.start.dateTime,
         end: data.end.date || data.end.dateTime,
         title: data.summary
       })
     })
-    callback(moonEvents);
+    callback(events);
   });
 }
