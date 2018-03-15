@@ -22,7 +22,9 @@ function showPosition(position) {
 const url1 =`http://www.icalendar37.net/lunar/api/?lang=es&month=3&year=2018&size=50&lightColor=%23FFFF88&shadeColor=%23111111&sizeQuarter=20&texturize=false&LDZ=1519873200`;
 
 
-const url =`https://api.darksky.net/forecast/10dab22d21d6e22b3182546855456e74/${lat},${long}?units=auto&lang=es`
+
+const url2 =`https://api.darksky.net/forecast/10dab22d21d6e22b3182546855456e74/${lat},${long}?units=auto&lang=es`
+const url =`http://www.icalendar37.net/lunar/api/?lang=es&month=3&year=2018`
 console.log(url)
 // const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}&units=metric`
 
@@ -37,27 +39,23 @@ class WeatherLocation extends Component{
 
 	}
 	componentWillMount(){
-		const {moonPhase} = this.state
+		// const {moonPhase} = this.state
 		const api_weather = `${url}`;
 		// console.log(api_weather)
 		fetch(api_weather).then( data =>{
 			// console.log(data)
 			return data.json();
-		}).then(weather_data =>{
-			console.log(weather_data) 
-			const moonPhase = weather_data.daily.data[0].moonPhase
-			const timeZone = weather_data.timezone
-			console.log(timeZone)
-			console.log(moonPhase)		
-			return (
-			 <div>
-			<h1>{moonPhase}</h1>
-			<h1>`${timeZone}`</h1>
-			</div>
-			);
+		}).then(moon_data =>{
+			console.log(moon_data) 
+			// const moonPhase = moon_data.daily.data[0].moonPhase
+			// const timeZone = moon_data.timezone
+			// console.log(timeZone)
+			// console.log(moonPhase)		
+
 		})
 	
 	}
+
 
 // /*	CICLOS DE VIDA IMPORTANTESS!!!!*/
 // 	// se ejecuta antes del render
@@ -84,11 +82,12 @@ class WeatherLocation extends Component{
 
 	render = () => {
 		
-		
-    return (
-     <div>
-	hol
-	</div>
+				return (
+			 <div>
+
+			</div>
+
+
     );
   }
 
