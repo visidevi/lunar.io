@@ -19,10 +19,10 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-      <Grid>
+        <AppBar title='Lunar.io'/>
+      <Grid fluid>
         <Row>
         <Col xs={12}>
-        <AppBar title='Lunar.io'/>
         </Col>
         </Row>
         <Row>
@@ -35,7 +35,6 @@ class App extends Component {
           <Paper zDepth = {4}>
           <CurrentPlaceMoonPhases />
           <div className="locationList">
-           
           </div>
           </Paper>
           </Col>

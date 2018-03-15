@@ -10,8 +10,6 @@ import {
     THUNDER,
     DRIZZLE
 } from './../constant/weathers';
-
-
 /*treamos lo servicios de weatherLocation*/
 const getWeatherState = weather =>{
 
@@ -29,8 +27,7 @@ if(id < 300){
 }else 		return CLOUDY;
 }
 // esta funcion crea la data,
-const transformWeather = (weather_data) =>{
-//enlazado al icono del tiempo
+const transformWeather = (moon_data) =>{//enlazado al icono del tiempo
 const { weather } = weather_data;
 const {humidity, temp } = weather_data.main;
 const {speed} = weather_data.wind;

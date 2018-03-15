@@ -12,7 +12,7 @@ class LocationsListContainer extends Component{
 	render(){
 
 		return ( 
-			<MoonLocation  />
+			<MoonLocation/>
 		)
 	}
 

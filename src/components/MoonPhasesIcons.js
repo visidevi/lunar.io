@@ -32,7 +32,6 @@ const stateToIconName = (moonState) =>{
 		default:
 			return 'moon-alt-waning-crescent-4';
 	}
-
 }
 const getWeatherIcon = (moonState) => {
 	return	(

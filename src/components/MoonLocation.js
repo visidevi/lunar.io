@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import CircularProgress from 'material-ui/CircularProgress';
+// import WeatherData from './WeatherData';
 
 myUbicacion()
 function myUbicacion() {
@@ -33,10 +35,10 @@ class WeatherLocation extends Component{
 	constructor ({moonPhase}){
 		super();
 		this.state = { 
-			moonPhase: null,
+			moonPhase,
+			data: null,
 		}
 		console.log('constructor') 
-
 	}
 	componentWillMount(){
 		// const {moonPhase} = this.state
@@ -47,6 +49,9 @@ class WeatherLocation extends Component{
 			return data.json();
 		}).then(moon_data =>{
 			console.log(moon_data) 
+			const data = moon_data;
+			console.log(data)
+			this.setState ({ data }) //Le damos nuevo valor a la data
 			// const moonPhase = moon_data.daily.data[0].moonPhase
 			// const timeZone = moon_data.timezone
 			// console.log(timeZone)
@@ -55,41 +60,25 @@ class WeatherLocation extends Component{
 		})
 	
 	}
-
-
-// /*	CICLOS DE VIDA IMPORTANTESS!!!!*/
-// 	// se ejecuta antes del render
-// 	componentWillMount(){
-// 		console.log('componentWillMount ESTO VA A TENER LA INFORMACION  ANTES DEL RENDER')
-// 	}
-
-
-// SE EJECUTA AL FINAL DEL RENDER
-	// 	componentDidMount(){
-	// 	// console.log('componentDidMount se ejecuta despues del render')
-	// }
-
-
-
-// // se ejecuta despues del renderizado por segunda vez
-// 	componentWillUpdate(nextProps, nextState){
-// 		console.log('componentWillUpdate')
-// 	}
-// //Esta última parte de la actualización de un componente ocurre justo después de que se renderiza en el DOM nuestro componente.
-// 	componentDidUpdate(prevProps, prevState){
-// 		console.log('ComponentDidUpdate')
-// 	}
-
+	componentWillReceiveProps(next_props){
+		const {data} = this.state;
+		const day = new Date().getDate();
+	 
+		const dayWeek= data.phase[day].dayWeek
+		console.log(data)
+		console.log(dayWeek)
+	}
 	render = () => {
-		
-				return (
-			 <div>
+	  const {data} = this.state;
+	  console.log(data)
+  return (
+   <div>
+	  <span>moonPhase</span>
 
-			</div>
 
-
-    );
-  }
+  </div>
+  );
+}
 
   //usamos el operador ternario {?  if : else}
 
