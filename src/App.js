@@ -4,7 +4,10 @@ import firebase, { auth, provider } from './firebase.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faGoogle } from '@fortawesome/fontawesome-free-brands'
 import Calendar from './components/Calendar';
 import logo from './images/logo.png';
 import './App.css';
@@ -13,7 +16,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      city: null, // Ubicación actual
       user: null, // <-- Google user
     }
     console.log('constructor');
@@ -36,9 +38,7 @@ class App extends Component {
     auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
-        this.setState({
-          user
-        });
+        this.setState({ user });
       });
   }
 
@@ -60,14 +60,34 @@ class App extends Component {
           <MuiThemeProvider>
             <AppBar title="LUNAR.IO" className="appBar" />
             <Grid fluid>
+              <header>
+                <Row>
+                  <Col xs={12} lg={12}>
+                    <p className="App-intro">¡Hola, {this.state.user.displayName}!</p>
+                    <img width="100" src={this.state.user.photoURL} alt={this.state.user.displayName} />
+                    <RaisedButton
+                      className="button"
+                      onClick={this.logout}
+                      backgroundColor="#c7c7c7"
+                      icon={<FontAwesomeIcon icon="signoutalt" />}
+                    />
+                  </Col>
+                </Row>
+              </header>
               <Row>
-                <Col xs={12} md={12}>
+                <Col xs={12} lg={12}>
                   <div className="calendar">
                     <Calendar />
                   </div>
-                  <FlatButton onClick={this.state.logout} label="Cierra sesión" />
                 </Col>
               </Row>
+              <footer>
+                <Row>
+                  <Col sx={12} lg={12}>
+                    <p className="footer">Made with React @ 2018 Copyright VisakaDevi & Maka Fernández</p>
+                  </Col>
+                </Row>
+              </footer>
             </Grid>
           </MuiThemeProvider>
           :
@@ -75,14 +95,20 @@ class App extends Component {
             <Row>
               <Col xs={12} md={12}>
                 <div className="logo">
-                  <img className="App-logo" src={logo} alt="Lunar.io logo" />
+                  <img className="appLogo" src={logo} alt="Lunar.io logo" />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
-                <div>
-                  <FlatButton onClick={this.state.login} label="Ingresa" />
+                <div className="login">
+                  <p>Ingresa con tu cuenta de Google</p>
+                  <RaisedButton
+                    className="button"
+                    onClick={this.login}
+                    backgroundColor="#c7c7c7"
+                    icon={<FontAwesomeIcon icon={faGoogle} />}
+                  />
                 </div>
               </Col>
             </Row>

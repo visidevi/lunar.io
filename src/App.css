@@ -1,39 +1,42 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20rem;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Paleta de colores #8549C1, #303030, #DBDBDB */
 .appBar {
   background-color: #8E9FE6 !important;
 }
 
+.logo {
+  text-align: center;
+  height: 50vh;
+  padding: 10vh 0;
+}
+
+.login {
+  text-align: center;
+  height: 50vh;
+}
+
+.button {
+  margin: 1rem;
+  font-size: 1.5rem!important;
+  width: 8rem;
+  height: 2rem;
+}
+
 .calendar {
   height: 50vh;
+}
+
+@media only screen and (max-width:1025em) { 
+	.calendar {
+    height: 65vh;
+  }
+  .rbc-calendar {
+    height: 65vh !important;
+  }
+}
+
+.App-intro {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .rbc-calendar {
@@ -66,4 +69,19 @@
 
 .rbc-off {
   background-color: #eeeeee;
+}
+
+header {
+  background-image: url(./images/lunas.jpg);
+  background-repeat: repeat-x;
+  background-size: fill;
+}
+
+.footer {
+  background-color: #E5E5E5;
+  top: 90vh;
+  height: 5vh;
+  color: #8E9FE6;
+  padding: 1.2rem 1rem 0;
+  font-size: 0.9rem;
 }

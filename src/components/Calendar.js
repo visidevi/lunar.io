@@ -62,7 +62,7 @@ class Calendar extends Component {
             title="Evento"
             actions={actions}
             modal={false}
-            open={this.state.open}
+            open={this.setState.open}
             onRequestClose={this.handleClose}
             autoScrollBodyContent={true}
           />
