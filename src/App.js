@@ -1,39 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firebase, { auth, provider } from './firebase.js';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import { getEvents } from './gcal';
 import Calendar from './components/Calendar';
 import logo from './images/logo.png';
-import 'typeface-open-sans';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: '', // <-- Nombre que aparece en pantalla (displayName)
       city: null, // Ubicación actual
       user: null, // <-- Google user
-      events: [] // <-- Eventos del calendario lunar
     }
     console.log('constructor');
-    //this.handleChange = this.handleChange.bind(this); // <-- maneja los cambios y los vincula al state
     this.login = this.login.bind(this); // <-- lo ligamos (bind) al constructor para cuando hagamos this.setState
     this.logout = this.logout.bind(this); // <-- tengamos acceso a this
   }
-
-  /*handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  } */
 
   // Cierre de sesión
   logout() {
@@ -62,31 +48,24 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
-        console.log(user);
       }
     });
-    // Trae los eventos de la API de Google Calendar:
-    getEvents((events) => {
-      this.setState({ events });
-    })
   }
 
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <MuiThemeProvider>
         {/* Vista 1 Usuario logueado : Vista 2 No logueado */}
         {this.state.user ?
-          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-            <AppBar title="LUNAR.IO" />
+          <MuiThemeProvider>
+            <AppBar title="LUNAR.IO" className="appBar" />
             <Grid fluid>
               <Row>
                 <Col xs={12} md={12}>
-                  <Calendar 
-                    events={this.state.events}
-                    startAccessor='startDate'
-                    endAccessor='endDate' 
-                  />
-                  <FlatButton onClick={this.logout} label="Cierra sesión" />
+                  <div className="calendar">
+                    <Calendar />
+                  </div>
+                  <FlatButton onClick={this.state.logout} label="Cierra sesión" />
                 </Col>
               </Row>
             </Grid>
@@ -103,7 +82,7 @@ class App extends Component {
             <Row>
               <Col xs={12} md={12}>
                 <div>
-                  <FlatButton onClick={this.login} label="Ingresa" />
+                  <FlatButton onClick={this.state.login} label="Ingresa" />
                 </div>
               </Col>
             </Row>
@@ -114,9 +93,10 @@ class App extends Component {
   }
 }
 
-/*App.propTypes = {
+App.propTypes = {
   user: PropTypes.array.isRequired,
-  username: PropTypes.string.isRequired
-} */
+  username: PropTypes.string.isRequired,
+  //events: PropTypes.Array.isRequired,
+}
 
 export default App;

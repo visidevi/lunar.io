@@ -26,3 +26,40 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Paleta de colores #8549C1, #303030, #DBDBDB */
+.appBar {
+  background-color: #8E9FE6 !important;
+}
+
+.calendar {
+  height: 50vh;
+}
+
+.rbc-calendar {
+  padding: 1rem 0;
+}
+
+.rbc-toolbar {
+ background-color: #DBF094;
+}
+
+.rbc-active {
+  background-color: #ceeb70 !important;
+}
+
+.rbc-month-view {
+  background-color: #FFF;
+}
+
+.rbc-today {
+  background-color: #a0dcfc;
+}
+
+.rbc-event {
+  background-color: #6CE6DD;
+}
+
+.rbc-off {
+  background-color: #eeeeee;
+}
