@@ -17,13 +17,22 @@ const NumberOfHoursPopup = props => {
   return(
     <div id="number-of-hours-popup">
     <main>
-    <ImportantMessage message="Selecciona la hora"/>
-   <p className="slot-selectd">{"Fecha Seleccionada:" + props.slotSelection.start}</p>
+    <ImportantMessage message="Lunar.io"/>
+    <h1>{props.slotSelection.title}</h1>
+    <h4>{props.slotSelection.start}</h4>
+    <h2><img width="20" src={props.slotSelection.iconLink} alt={props.slotSelection.title}/></h2>
+  <p className="slot-selectd">
+  Para que el pelo crezca más abundante y grueso hay que cortar
+   el pelo durante la luna llena.
+   -Recomendamos no practicar Yoga, Durante esta luna.
+ </p>
+   {/* <p className="slot-selectd">{"Fecha Seleccionada:" + props.slotSelection.start}</p>
+   
     <input type="time" name="start_time" ref={node => startTime = node} 
     placerholder="Time Clocked In" onChange={()=>props.setTime(startTime)}/>
     <input type="time" name="end_time" ref={node => endTime = node} 
     placerholder="Time Clocked In" onChange={()=>props.setTime(endTime)}/>
-    <p class="calcedHours">{props.calculatedHours + "Hours"}</p>
+    <p className="calcedHours">{props.calculatedHours + "Hours"}</p> */}
     <button type="button" onClick={props.togglePopup}>Cerrar</button>
     </main>
     </div>
@@ -49,9 +58,14 @@ class Calendar extends Component {
   }
   //Seleciona el dia de la semana, la fecha y hora
   slotSelected(slotInfo){
-    // console.log(slotInfo)
+    console.log(slotInfo)
     this.setState({slotSelection:slotInfo})
     return this.togglePopup();
+  }
+  slotEvent = props => {
+    
+      console.log('hola')
+    
   }
   setTime(filed){
     console.log(filed)
@@ -74,7 +88,7 @@ class Calendar extends Component {
     return this.setState({calculatedHours:hours})
   }
   togglePopup(){
-    $("#number-of-hours-popup").slideToggle()
+    $("#number-of-hours-popup").slideToggle("slow")
   }
   
   render () {
@@ -101,7 +115,8 @@ const MyCalendar = props =>(
         events={props.events}
         views={['month', 'agenda']}
         selectable={true}
-        onSelectSlot={props.slotSelected}
+        // onSelectSlot={props.slotSelected}
+        onSelectEvent={props.slotSelected}
        
         
       />
