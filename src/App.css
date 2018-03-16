@@ -4,7 +4,7 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 20rem;
 }
 
 .App-header {
@@ -25,4 +25,59 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+#number-of-hours-popup{
+  position:fixed; 
+  z-index: 5;
+  background: #ffffff33;
+  width: 40%;
+  height: auto; 
+  color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+#number-of-hours-popup main{
+  background: rgb(47, 136, 165);
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#number-of-hours-popup input{
+  border: 5px solid  rgb(47, 136, 165);
+  width: 50%;
+  display: inline-block;
+text-align: center;
+color:black;
+padding: 1em;
+font-size: small;
+}
+.important-message{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  color:white;
+  background: rgb(5, 49, 94);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: small;
+}
+.calcedHours{
+  border-radius: 2em;
+  text-align: center;
+  padding: 1em;
+  color:white;
+  background: rgb(5, 49, 94);
+  text-transform: uppercase;
+  width: 50%;
+  margin:auto;
+
+}
+.slot-selectd{
+  text-align: center;
+  padding: 2em;
+  
 }

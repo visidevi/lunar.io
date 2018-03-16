@@ -1,0 +1,47 @@
+
+import React, {Component}from 'react'
+import moment from 'moment'
+import 'moment/locale/es';
+import BigCalendar from 'react-big-calendar'
+import { getEvents } from './../gcal'
+
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+BigCalendar.momentLocalizer(moment)
+
+class Calendar extends Component {
+  constructor () {
+    super()
+    this.state = {
+      events: []
+    }
+  }
+  componentDidMount () {
+    getEvents((events) => {
+      this.setState({events})
+    })
+  }
+  render () {
+    return (
+      // React Components in JSX look like HTML tags
+      <BigCalendar
+        style={{height: '420px'}}
+        events={this.state.events}
+        culture='es'
+        views={['month', 'agenda']}
+        onSelectEvent={event => alert(
+            <img src={event.iconLink} alt=""/>
+          )
+        }
+        onSelectSlot={slotInfo =>
+          alert(
+            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+              `\nend: ${slotInfo.end.toLocaleString()}` +
+              `\naction: ${slotInfo.action}`
+          )
+        }
+        
+      />
+    )
+  }
+}
+export default Calendar;
