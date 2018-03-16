@@ -3,13 +3,14 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyBkQ2mKU0wB0rPAPDSnK3ULqCAEfu6H4Sw",
-  authDomain: "vegan-place.firebaseapp.com",
-  databaseURL: "https://vegan-place.firebaseio.com",
-  projectId: "vegan-place",
-  storageBucket: "vegan-place.appspot.com",
-  messagingSenderId: "456107137524"
-}
+  apiKey: "AIzaSyCaN5RFsEmki4tyyaRoc2Pfwfe-5zqhfFw",
+  authDomain: "lunar-io.firebaseapp.com",
+  databaseURL: "https://lunar-io.firebaseio.com",
+  projectId: "lunar-io",
+  storageBucket: "lunar-io.appspot.com",
+  messagingSenderId: "520700094193"
+};
+
 firebase.initializeApp(config);
 
 export const provider = new firebase.auth.GoogleAuthProvider();

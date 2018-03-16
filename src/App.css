@@ -1,31 +1,60 @@
-.App {
+.appBar {
+  background-color: #8E9FE6 !important;
+}
+
+.logo {
   text-align: center;
+  height: 50vh;
+  padding: 10vh 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20rem;
+.login {
+  text-align: center;
+  height: 50vh;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.button {
+  margin: 1rem;
+  font-size: 1.5rem!important;
+  width: 8rem;
+  height: 2rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.calendar {
+  height: 50vh;
+}
+
+@media only screen and (max-width:1025em) { 
+	.calendar {
+    height: 65vh;
+  }
+  .rbc-calendar {
+    height: 65vh !important;
+  }
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.rbc-calendar {
+  padding: 1rem 0;
 }
+
+.rbc-toolbar {
+ background-color: #DBF094;
+}
+
+.rbc-active {
+  background-color: #F5FFCB !important;
+}
+
+.rbc-month-view {
+  background-color: #FFF;
+}
+
 #number-of-hours-popup{
   position:fixed; 
   z-index: 5;
@@ -36,8 +65,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
+
 #number-of-hours-popup main{
   background: rgb(47, 136, 165);
   width: 100%;
@@ -46,6 +75,7 @@
   align-items: center;
   text-align: center;
 }
+
 #number-of-hours-popup input{
   border: 5px solid  rgb(47, 136, 165);
   width: 50%;
@@ -55,6 +85,7 @@ color:black;
 padding: 1em;
 font-size: small;
 }
+
 .important-message{
   width: 100%;
   display: inline-block;
@@ -65,6 +96,7 @@ font-size: small;
   font-weight: 400;
   font-size: small;
 }
+
 .calcedHours{
   border-radius: 2em;
   text-align: center;
@@ -74,10 +106,40 @@ font-size: small;
   text-transform: uppercase;
   width: 50%;
   margin:auto;
-
 }
-.slot-selectd{
+
+.slot-selectd {
   text-align: center;
   padding: 2em;
-  
+}
+
+.rbc-today {
+  background-color: #F5FFCB;
+}
+
+.rbc-event {
+  background-color: #F5C8BD;
+}
+
+.rbc-selected {
+  background-color: #f79278 !important;
+}
+
+.rbc-off {
+  background-color: #eeeeee;
+}
+
+header {
+  background-image: url(./images/lunas.jpg);
+  background-repeat: repeat-x;
+  background-size: fill;
+}
+
+.footer {
+  background-color: #E5E5E5;
+  top: 90vh;
+  height: 5vh;
+  color: #8E9FE6;
+  padding: 1.2rem 1rem 0;
+  font-size: 0.9rem;
 }

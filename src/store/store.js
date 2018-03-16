@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-// importar reducers aquí
+import { user } from './../reducers/user';
 
 /* Crear un estado inicial con initialState
    const initialState = {
@@ -11,6 +11,3 @@ import { createStore } from 'redux';
 // Se pasan al store como parámetros:
 // export const store = createStore(city, username, user, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ &&
 // window.__REDUX_DEVTOOLS_EXTENSION__());
-
-export const store = createStore(() => { }, window.__REDUX_DEVTOOLS_EXTENSION__ &&
-window.__REDUX_DEVTOOLS_EXTENSION__());

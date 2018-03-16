@@ -1,4 +1,3 @@
-
 import React, {Component}from 'react'
 import moment from 'moment'
 import 'moment/locale/es';
@@ -8,8 +7,8 @@ import ImportantMessage from './ImportantMessage'
 import FlatButton from 'material-ui/FlatButton';
 import $ from 'jquery'
 import './../App.css';
-
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+
 BigCalendar.momentLocalizer(moment)
 
 const NumberOfHoursPopup = props => {
@@ -36,7 +35,6 @@ const NumberOfHoursPopup = props => {
     <button type="button" onClick={props.togglePopup}>Cerrar</button>
     </main>
     </div>
-
   )
 }
 class Calendar extends Component {
@@ -63,9 +61,7 @@ class Calendar extends Component {
     return this.togglePopup();
   }
   slotEvent = props => {
-    
-      console.log('hola')
-    
+    console.log('hola')
   }
   setTime(filed){
     console.log(filed)
@@ -101,9 +97,7 @@ class Calendar extends Component {
     return (
     <div>
     {this.state.slotSelection?<NumberOfHoursPopup {...props}/> : null}
-    <MyCalendar events={this.state.events} slotSelected={this.slotSelected.bind(this)}/>
-    
-    </div>
+    <MyCalendar events={this.state.events} slotSelected={this.slotSelected.bind(this)}/
     )
   }
 }
@@ -116,10 +110,13 @@ const MyCalendar = props =>(
         views={['month', 'agenda']}
         selectable={true}
         // onSelectSlot={props.slotSelected}
-        onSelectEvent={props.slotSelected}
-       
-        
+        onSelectEvent={props.slotSelected} 
       />
     </div>
 )
+
+Calendar.propTypes = {
+  events: PropTypes.array.isRequired,
+}
+
 export default Calendar;

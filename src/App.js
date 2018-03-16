@@ -1,42 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firebase, { auth, provider } from './firebase.js';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import Calendar from './components/Calendar';
-import { getEvents } from './gcal'
-import logo from './images/logo.png';
+import RaisedButton from 'material-ui/RaisedButton';
 import DialogExampleModal from './components/modal'
 import events from './events'
-import 'typeface-open-sans';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faGoogle } from '@fortawesome/fontawesome-free-brands'
+import Calendar from './components/Calendar';
+import { getEvents } from './gcal'
+import logo from './images/lgo.png';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
       user: null, // <-- Google user
-      events: [] // <-- Eventos del calendario
     }
-    console.log('constructor');
-    //this.handleChange = this.handleChange.bind(this); // <-- maneja los cambios y los vincula al state
+    // console.log('constructor');
     this.login = this.login.bind(this); // <-- lo ligamos (bind) al constructor para cuando hagamos this.setState
     this.logout = this.logout.bind(this); // <-- tengamos acceso a this
   }
 
-  /*handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  } */
-
-  // Cierre de sesión
+// Cierre de sesión
   logout() {
     auth.signOut()
       .then(() => {
@@ -58,8 +47,6 @@ class App extends Component {
         return(
           <p>hola</p>
         )
-      });
-  }
 
   componentDidMount() {
     // Verifica en la DB de Firebase si el usuario conectado ya estaba autenticado, si
@@ -70,34 +57,44 @@ class App extends Component {
         console.log(user);
       }
     });
-    // Trae los eventos de la API de Google Calendar:
-    // Trae los eventos de la API de Google Calendar:
-  //   getEvents((events) => {
-  //    this.setState(events);
-  //    console.log(events)
-     
-  //   })
   }
 
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <MuiThemeProvider>
+        {/* Vista 1 Usuario logueado : Vista 2 No logueado */}
         {this.state.user ?
-          <MuiThemeProvider >
-            <AppBar title="LUNAR.IO" />
+          <MuiThemeProvider>
+            <AppBar title="LUNAR.IO" className="appBar" />
             <Grid fluid>
+              <header>
+                <Row>
+                  <Col xs={12} lg={12}>
+                    <p className="App-intro">¡Hola, {this.state.user.displayName}!</p>
+                    <img width="100" src={this.state.user.photoURL} alt={this.state.user.displayName} />
+                    <RaisedButton
+                      className="button"
+                      onClick={this.logout}
+                      backgroundColor="#c7c7c7"
+                      icon={<FontAwesomeIcon icon="signoutalt" />}
+                    />
+                  </Col>
+                </Row>
+              </header>
               <Row>
-                <Col xs={12} md={12}>
-                <p className="App-intro">¡Hola, { this.state.user.displayName }!</p>
-                <img width="70" src={this.state.user.photoURL} alt={this.state.user.displayName} />
-                <FlatButton onClick={this.logout} label="Cierra sesión" />
-                <DialogExampleModal/>
-                </Col>
-                <Col xs={12} md={12}>
-                <Calendar  
-                  />
+                <Col xs={12} lg={12}>
+                  <div className="calendar">
+                    <Calendar />
+                  </div>
                 </Col>
               </Row>
+              <footer>
+                <Row>
+                  <Col sx={12} lg={12}>
+                    <p className="footer">Made with React @ 2018 Copyright VisakaDevi & Maka Fernández</p>
+                  </Col>
+                </Row>
+              </footer>
             </Grid>
           </MuiThemeProvider>
           :
@@ -105,15 +102,20 @@ class App extends Component {
             <Row>
               <Col xs={12} md={12}>
                 <div className="logo">
-                  <img className="App-logo" src={logo} alt="" />
+                  <img className="appLogo" src={logo} alt="Lunar.io logo" />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
-                <div>
-                  <FlatButton onClick={this.login} label="Ingresa" />
-          
+                <div className="login">
+                  <p>Ingresa con tu cuenta de Google</p>
+                  <RaisedButton
+                    className="button"
+                    onClick={this.login}
+                    backgroundColor="#c7c7c7"
+                    icon={<FontAwesomeIcon icon={faGoogle} />}
+                  />
                 </div>
               </Col>
             </Row>
@@ -124,9 +126,10 @@ class App extends Component {
   }
 }
 
-// App.propTypes = {
-//   user: PropTypes.array.isRequired,
-//   username: PropTypes.string.isRequired
-// }
+App.propTypes = {
+  user: PropTypes.array.isRequired,
+  username: PropTypes.string.isRequired,
+  //events: PropTypes.Array.isRequired,
+}
 
 export default App;
