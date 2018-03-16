@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
-import { getEvents } from './../gcal'
+import { getEvents } from './../gcal';
+import MoonEvent from './MoonEvent';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
@@ -13,6 +17,7 @@ class Calendar extends Component {
     super()
     this.state = {
       events: [],
+      open: false,
     }
   }
   componentDidMount() {
@@ -22,6 +27,21 @@ class Calendar extends Component {
   }
 
   render() {
+    const self = this;
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={() => this.setState({ open: false })}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={() => this.timeClose()}
+      />,
+    ];
+
     return (
       <React.Fragment>
         <BigCalendar
@@ -32,16 +52,21 @@ class Calendar extends Component {
           startAccessor="start"
           endAccessor="end"
           titleAccessor="title"
+          popup={true}
           scrollToTime={new Date(1970, 1, 1, 6)}
           onSelectEvent={event => alert(event.title)}
-          onSelectSlot={slotInfo =>
-            alert(
-              `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-              `\nend: ${slotInfo.end.toLocaleString()}` +
-              `\naction: ${slotInfo.action}`
-            )
-          }
+          onSelectSlot={(slotInfo) => this.dateSelected(slotInfo)}
         />
+        <MuiThemeProvider>
+          <Dialog
+            title="Evento"
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            autoScrollBodyContent={true}
+          />
+        </MuiThemeProvider>
       </React.Fragment>
     )
   }

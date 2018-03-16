@@ -45,7 +45,7 @@
 }
 
 .rbc-active {
-  background-color: #ceeb70 !important;
+  background-color: #F5FFCB !important;
 }
 
 .rbc-month-view {
@@ -53,11 +53,15 @@
 }
 
 .rbc-today {
-  background-color: #a0dcfc;
+  background-color: #F5FFCB;
 }
 
 .rbc-event {
-  background-color: #6CE6DD;
+  background-color: #F5C8BD;
+}
+
+.rbc-selected {
+  background-color: #f79278 !important;
 }
 
 .rbc-off {
