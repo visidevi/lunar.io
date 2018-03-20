@@ -2,6 +2,10 @@
   background-color: #8E9FE6 !important;
 }
 
+.appBar h1 {
+  padding-top: 0 !important;
+}
+
 .logo {
   text-align: center;
   height: 50vh;
@@ -15,7 +19,7 @@
 
 .button {
   margin: 1rem;
-  font-size: 1.5rem!important;
+  font-size: 1.5rem !important;
   width: 8rem;
   height: 2rem;
 }
@@ -24,27 +28,26 @@
   height: 50vh;
 }
 
-@media only screen and (max-width:1025em) { 
-	.calendar {
-    height: 65vh;
-  }
-  .rbc-calendar {
-    height: 65vh !important;
-  }
-}
-
 .App-intro {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .rbc-calendar {
   padding: 1rem 0;
+  font-size: 0.6rem !important;
 }
 
 .rbc-toolbar {
  background-color: #DBF094;
+ font-size: 0.6rem !important;
+}
+
+.rbc-toolbar button {
+  font-size: 0.6rem !important;
+  padding: 0.5rem 0.2rem !important;
+  text-transform: uppercase;
 }
 
 .rbc-active {
@@ -56,19 +59,18 @@
 }
 
 #number-of-hours-popup{
-  position:fixed; 
+  position: fixed; 
   z-index: 5;
-  background: #ffffff33;
   width: 40%;
   height: auto; 
-  color:black;
+  color: #303030;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #number-of-hours-popup main{
-  background: rgb(47, 136, 165);
+  background-color: #FAFAFA;
   width: 100%;
   height: 100vh;
   justify-content: center;
@@ -80,18 +82,20 @@
   border: 5px solid  rgb(47, 136, 165);
   width: 50%;
   display: inline-block;
-text-align: center;
-color:black;
-padding: 1em;
-font-size: small;
+  text-align: center;
+  color: #303030;
+  padding: 1em;
+  font-size: small;
 }
 
 .important-message{
   width: 100%;
   display: inline-block;
   text-align: center;
-  color:white;
-  background: rgb(5, 49, 94);
+  color: #303030;
+  height: 1rem;
+  padding: 0.4rem 0;
+  background-color: #DBF094;
   text-transform: uppercase;
   font-weight: 400;
   font-size: small;
@@ -102,13 +106,13 @@ font-size: small;
   text-align: center;
   padding: 1em;
   color:white;
-  background: rgb(5, 49, 94);
+  background-color: #DBF094;
   text-transform: uppercase;
   width: 50%;
   margin:auto;
 }
 
-.slot-selectd {
+.slot-selected {
   text-align: center;
   padding: 2em;
 }
@@ -118,7 +122,11 @@ font-size: small;
 }
 
 .rbc-event {
-  background-color: #F5C8BD;
+  background-color: #F5C8BD !important;
+}
+
+.rbc-toolbar-label {
+  text-transform: capitalize;
 }
 
 .rbc-selected {
@@ -142,4 +150,25 @@ header {
   color: #8E9FE6;
   padding: 1.2rem 1rem 0;
   font-size: 0.9rem;
+}
+
+@media only screen and (min-width:750px) {
+  .calendar {
+    height: 65vh;
+  }
+  .rbc-calendar {
+    height: 65vh !important;
+    font-size: 1rem!important;
+  }
+  .rbc-toolbar {
+    font-size: 1.2rem !important;
+  }
+  .rbc-toolbar button {
+    font-size: 0.7rem !important;
+    padding: .375rem 1rem !important;
+    text-transform: uppercase;
+  }
+  .App-intro {
+    font-size: 1.5rem;
+  }
 }

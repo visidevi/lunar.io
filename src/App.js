@@ -5,13 +5,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import DialogExampleModal from './components/modal'
 import events from './events'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faGoogle } from '@fortawesome/fontawesome-free-brands'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import fontawesome from '@fortawesome/fontawesome';
+import { faGoogle } from '@fortawesome/fontawesome-free-brands';
 import Calendar from './components/Calendar';
 import { getEvents } from './gcal'
-import logo from './images/lgo.png';
+import logo from './images/logo.png';
 import './App.css';
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
     this.logout = this.logout.bind(this); // <-- tengamos acceso a this
   }
 
-// Cierre de sesión
+  // Cierre de sesión
   logout() {
     auth.signOut()
       .then(() => {
@@ -44,9 +44,11 @@ class App extends Component {
         this.setState({
           user
         });
-        return(
+        return (
           <p>hola</p>
         )
+      })
+  }
 
   componentDidMount() {
     // Verifica en la DB de Firebase si el usuario conectado ya estaba autenticado, si
@@ -62,7 +64,6 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        {/* Vista 1 Usuario logueado : Vista 2 No logueado */}
         {this.state.user ?
           <MuiThemeProvider>
             <AppBar title="LUNAR.IO" className="appBar" />
@@ -76,7 +77,7 @@ class App extends Component {
                       className="button"
                       onClick={this.logout}
                       backgroundColor="#c7c7c7"
-                      icon={<FontAwesomeIcon icon="signoutalt" />}
+                      label="SALIR"
                     />
                   </Col>
                 </Row>
@@ -91,7 +92,7 @@ class App extends Component {
               <footer>
                 <Row>
                   <Col sx={12} lg={12}>
-                    <p className="footer">Made with React @ 2018 Copyright VisakaDevi & Maka Fernández</p>
+                    <p className="footer">Made with React @ 2018 Copyright Visaka Devi & Maka Fernández</p>
                   </Col>
                 </Row>
               </footer>
@@ -127,9 +128,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  user: PropTypes.array.isRequired,
-  username: PropTypes.string.isRequired,
-  //events: PropTypes.Array.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default App;

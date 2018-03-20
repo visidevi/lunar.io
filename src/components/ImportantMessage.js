@@ -1,6 +1,7 @@
-import React, {Component}from "react";
-const ImportantMessage = props =>(
+import React, { Component } from "react";
 
-    <span className='important-message'>{props.message}</span>
+const ImportantMessage = props => (
+  <span className='important-message'>{props.message}</span>
 )
+
 export default ImportantMessage;
