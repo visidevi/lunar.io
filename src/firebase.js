@@ -2,14 +2,14 @@
 import firebase from 'firebase';
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCaN5RFsEmki4tyyaRoc2Pfwfe-5zqhfFw",
-  authDomain: "lunar-io.firebaseapp.com",
-  databaseURL: "https://lunar-io.firebaseio.com",
-  projectId: "lunar-io",
-  storageBucket: "lunar-io.appspot.com",
-  messagingSenderId: "520700094193"
-};
+  var config = {
+    apiKey: "AIzaSyCYZozTqLiZXgzchixF_fCpUarTY3Y8-Ek",
+    authDomain: "lunario-lab.firebaseapp.com",
+    databaseURL: "https://lunario-lab.firebaseio.com",
+    projectId: "lunario-lab",
+    storageBucket: "lunario-lab.appspot.com",
+    messagingSenderId: "290833092064"
+  };
 
 firebase.initializeApp(config);
 

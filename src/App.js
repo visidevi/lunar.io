@@ -5,13 +5,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import events from './events'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import fontawesome from '@fortawesome/fontawesome';
 import { faGoogle } from '@fortawesome/fontawesome-free-brands';
 import Calendar from './components/Calendar';
 import { getEvents } from './gcal'
 import logo from './images/logo.png';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import FontIcon from 'material-ui/FontIcon';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
 import './App.css';
 
 class App extends Component {
@@ -70,19 +73,23 @@ class App extends Component {
             <Grid fluid>
               <header>
                 <Row>
-                  <Col xs={12} lg={12}>
-                    <p className="App-intro">¡Hola, {this.state.user.displayName}!</p>
-                    <img width="100" src={this.state.user.photoURL} alt={this.state.user.displayName} />
-                    <RaisedButton
+                  <Col xs={4} lg={4}>
+                    <ListItem disabled={true}
+                      leftAvatar={<Avatar src={this.state.user.photoURL} alt={this.state.user.displayName} />}
+                    >¡Hola, {this.state.user.displayName}!  <button
                       className="button"
                       onClick={this.logout}
                       backgroundColor="#c7c7c7"
-                      label="SALIR"
-                    />
+                    >Cerrar sesión</button></ListItem>
+                  </Col>
+                  <Col xs={8} lg={8}>
+                    <h6>Bienvenid@ <span>Lunar.io es un calendario que informa las fases de Luna durante el año y te entrega recomendaciones de las actividades adecuadas para cada fase.
+                    </span></h6>
                   </Col>
                 </Row>
               </header>
               <Row>
+
                 <Col xs={12} lg={12}>
                   <div className="calendar">
                     <Calendar />

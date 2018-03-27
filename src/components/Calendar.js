@@ -5,35 +5,33 @@ import 'moment/locale/es';
 import BigCalendar from 'react-big-calendar'
 import { getEvents } from './../gcal';
 import ImportantMessage from './ImportantMessage';
-import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery';
 import './../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 BigCalendar.momentLocalizer(moment);
-
 const NumberOfHoursPopup = props => {
   let startTime, endTime;
   return (
     <div id="number-of-hours-popup">
       <main>
-        <ImportantMessage message="Selecciona la hora" />
-        <p className="slot-selected">{"Fecha Seleccionada:" + props.slotSelection.start}</p>
+        <ImportantMessage message="Luna Selecionada" />
+        {/* <p className="slot-selected">{"Fecha Seleccionada:" + props.slotSelection.start}</p>
         <h3><span><img width="25" src={props.slotSelection.icon} alt={props.slotSelection.title} /></span> {props.slotSelection.title}</h3>
         <h4>{props.slotSelection.start.toString()}</h4>
-        <h5>Recomendaciones</h5>
+        <span>Recomendaciones</span>
         <p className="slot-selected">
-          Para que el pelo crezca más abundante y grueso hay que cortar el pelo durante la luna llena.
-        </p>
-        <p>Recomendamos no practicar Yoga durante esta fase lunar.</p>
-        {/* <p className="slot-selectd">{"Fecha Seleccionada:" + props.slotSelection.start}</p>   
-        <input type="time" name="start_time" ref={node => startTime = node} 
-        placerholder="Time Clocked In" onChange={()=>props.setTime(startTime)}/>
-        <input type="time" name="end_time" ref={node => endTime = node} 
-        placerholder="Time Clocked In" onChange={()=>props.setTime(endTime)}/>
-        <p class="calcedHours">{props.calculatedHours + "Hours"}</p>
-        <p className="calcedHours">{props.calculatedHours + "Hours"}</p> */}
-        <button type="button" onClick={props.togglePopup}>Cerrar</button>
+          {/* Para que el pelo crezca más abundante y grueso hay que cortar el pelo durante la luna llena.
+        </p> */}
+         <h3><span><img width="25" src={props.slotSelection.icon} alt={props.slotSelection.title} /></span> {props.slotSelection.title}</h3>
+        <span className="slot-selectd">{"Fecha Seleccionada:" + props.slotSelection.start}</span>
+        <input type="time" name="start_time" ref={node => startTime = node}
+          placerholder="Time Clocked In" onChange={() => props.setTime(startTime)} />
+        <input type="time" name="end_time" ref={node => endTime = node}
+          placerholder="Time Clocked In" onChange={() => props.setTime(endTime)} />
+        <p className="calcedHours">{props.calculatedHours + "Hours"}</p>
+        <button variant="raised" color="primary" type="button" onClick={props.togglePopup}>Cerrar</button>
+        <button variant="raised" color="primary" type="button" onClick={props.saveHours}>Cerrar</button>
       </main>
     </div>
   )
@@ -106,12 +104,18 @@ class Calendar extends Component {
   togglePopup() {
     $('#number-of-hours-popup').slideToggle('slow');
   }
+  saveHours(){
+    // usamos Actions para guardar la fecha selecionada
+    // Usamos dispatch para guardar la lista de eventos
+    ACTIONS.saveHours(this.state.slotSelection, this.state.calculatedHours)
+  }
 
   render() {
     const props = Object.assign({}, this.state, {
       setTime: this.setTime.bind(this),
       slotSelected: this.slotSelected,
-      togglePopup: this.togglePopup
+      togglePopup: this.togglePopup,
+      saveHours: this.saveHours.bind(this)
     });
 
     return (
@@ -122,9 +126,7 @@ class Calendar extends Component {
     )
   }
 }
-
 const MyCalendar = props => (
-  <React.Fragment>
     <BigCalendar
       selectable={true}
       style={{ height: '50vh' }}
@@ -137,11 +139,27 @@ const MyCalendar = props => (
       scrollToTime={new Date(1970, 1, 1, 6)}
       onSelectEvent={props.slotSelected}
     />
-  </React.Fragment>
 )
+const mapStateToProps = state => ({
+  events:state.events
+})
 
+
+
+const mapDispatchToProps = dispatch => ({
+  saveHours:(slot,hours)=>{
+    ACTIONS.saveHours(slot,hours)
+    .then(response=>{
+      if(response.data.error){}
+      else{
+        //dispatch
+      }
+    })
+  }
+  
+})
 Calendar.propTypes = {
   events: PropTypes.array.isRequired,
 }
- 
-export default Calendar;
+
+export default connect(mapDispatchToProps, mapStateToProps)(Calendar);
