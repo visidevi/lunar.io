@@ -3,7 +3,7 @@
 # Lunar.io
 Lunar.io es un calendario que informa las fases de Luna durante el año y te entrega recomendaciones de las actividades adecuadas para cada fase. Como cortarse el pelo en Luna Nueva o comenzar un tratamiento médico en Cuarto Creciente.
 
-![lunar io](https://user-images.githubusercontent.com/20823643/37866333-11051030-2f68-11e8-8f38-739bff292c66.png)
+![lunar io](https://github.com/visidevi/lunar.io/blob/master/FireShot%20Capture%2032%20-%20Lunar.io%20-%20https___visidevi.github.io_lunar.io_.png?raw=true)
 
 ## Desarrollado para
 [Laboratoria](https://laboratoria.la)
