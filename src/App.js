@@ -9,12 +9,11 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/fontawesome-free-brands';
 import Calendar from './components/Calendar';
 import { getEvents } from './gcal'
-import logo from './images/logo.png';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import FontIcon from 'material-ui/FontIcon';
-import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
+import logo from './images/logo.png';
 import './App.css';
 
 class App extends Component {
