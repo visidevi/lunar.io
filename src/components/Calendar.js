@@ -104,18 +104,18 @@ class Calendar extends Component {
   togglePopup() {
     $('#number-of-hours-popup').slideToggle('slow');
   }
-  saveHours(){
-    // usamos Actions para guardar la fecha selecionada
-    // Usamos dispatch para guardar la lista de eventos
-    ACTIONS.saveHours(this.state.slotSelection, this.state.calculatedHours)
-  }
+  // saveHours(){
+  //   // usamos Actions para guardar la fecha selecionada
+  //   // Usamos dispatch para guardar la lista de eventos
+  //   ACTIONS.saveHours(this.state.slotSelection, this.state.calculatedHours)
+  // }
 
   render() {
     const props = Object.assign({}, this.state, {
       setTime: this.setTime.bind(this),
       slotSelected: this.slotSelected,
       togglePopup: this.togglePopup,
-      saveHours: this.saveHours.bind(this)
+      // saveHours: this.saveHours.bind(this)
     });
 
     return (
@@ -146,20 +146,21 @@ const mapStateToProps = state => ({
 
 
 
-const mapDispatchToProps = dispatch => ({
-  saveHours:(slot,hours)=>{
-    ACTIONS.saveHours(slot,hours)
-    .then(response=>{
-      if(response.data.error){}
-      else{
-        //dispatch
-      }
-    })
-  }
+// const mapDispatchToProps = dispatch => ({
+//   saveHours:(slot,hours)=>{
+//     ACTIONS.saveHours(slot,hours)
+//     .then(response=>{
+//       if(response.data.error){}
+//       else{
+//         //dispatch
+//       }
+//     })
+//   }
   
-})
+// })
 Calendar.propTypes = {
   events: PropTypes.array.isRequired,
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(Calendar);
+// export default connect(mapDispatchToProps, mapStateToProps)(Calendar);
+export default Calendar;
